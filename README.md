@@ -1,6 +1,6 @@
-# fusee-framboise
+# Fusée à la Framboise
 
-Fusée Framboise is a Raspbian image that loops Fusée Gelée over and over again.
+Fusée à la Framboise is a Raspbian image that loops Fusée Gelée over and over again.
 
 ### Usage
 
