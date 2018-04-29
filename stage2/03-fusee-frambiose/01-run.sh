@@ -1,6 +1,8 @@
 #!/bin/bash -e
 
+on_chroot << EOF
 pip3 install pyusb
+EOF
 
 mkdir -p ${ROOTFS_DIR}/etc/fusee-launcher
 

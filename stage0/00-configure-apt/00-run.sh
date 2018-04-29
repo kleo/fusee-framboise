@@ -1,6 +1,13 @@
 #!/bin/bash -e
 
+mkdir -p "${ROOTFS_DIR}/etc/apt/"
+mkdir -p "${ROOTFS_DIR}/etc/apt/sources.list.d/"
+mkdir -p "${ROOTFS_DIR}/proc"
+mkdir -p "${ROOTFS_DIR}/dev"
+
+echo "sources.list"
 install -m 644 files/sources.list "${ROOTFS_DIR}/etc/apt/"
+echo "raspi.list"
 install -m 644 files/raspi.list "${ROOTFS_DIR}/etc/apt/sources.list.d/"
 
 if [ -n "$APT_PROXY" ]; then
