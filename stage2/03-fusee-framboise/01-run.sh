@@ -10,24 +10,22 @@ git clone "https://github.com/reswitched/fusee-launcher" ${ROOTFS_DIR}/etc/fusee
 
 curl -o ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin "https://misc.ktemkin.com/fusee.bin"
 
-touch /etc/systemd/system/fusee-launcher.service
+touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
-/etc/systemd/system/fusee-launcher.service << EOF
+chmod 770 $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
+
+cat << EOF > $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 [Unit]
-Description=Fusée Launcher service of Fusée Framboise
-After=network.target
+Description = Fusee Launcher service of Fusée Framboise
+After = network.target
 
 [Service]
-Type=simple
-User=root
-WorkingDirectory=/etc/fusee-launcher/
-ExecStart=/etc/fusee-launcher/modchipd.sh
-Restart=always
+ExecStart = /etc/fusee-launcher/modchipd.sh
 
 [Install]
-WantedBy=multi-user.target
+WantedBy = multi-user.target
 EOF
 
 on_chroot << EOF
-systemctl enable fusee-launcher
+systemctl enable fusee-launcher.service
 EOF
