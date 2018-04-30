@@ -2,17 +2,37 @@
 
 Fusée à la Framboise is a Raspbian image that loops Fusée Gelée over and over again.
 
-### Usage
+## Tutorial
+
+### What you need
+
+ * A Pi Zero (W)
+ * A power bank (500mA output works, but I'd recommend 1A)
+ * A USB hub (no need for it to be powered)
+ * A USB A -> C cable, for transmitting to the Switch. (**do not get an old/no-brand one, it may wreck your Switch or USB source** ([why?](https://pastebin.com/80QXsefE)))
+ * An A -> MicroUSB cable, for powering the Pi.
+ * A MicroUSB -> A cable, for USB output from the Pi. (one of these should come with a Pi Zero kit)
+
+### Setup
 
  1. [Download a fusee-framboise image](https://github.com/moriczgergo/fusee-framboise/releases), or [build one yourself](#building).
  2. Extract the release .zip file, and flash it to your Pi's SD card. (We recommend [Etcher](https://etcher.io) for a flashing tool.)
- 3. Start your Pi.
-
-You're ready for usage! Now, just plug in a USB-C cable, put your Switch in RCM mode, and it (hopefully) works!
+ 3. Plug in your USB Hub **before** you power on your Pi. ([why?](https://www.raspberrypi.org/forums/viewtopic.php?t=23205#p217196))
+ 4. Power on your Pi via your power bank.
  
-### Building
+### Usage
 
-## Dependencies
+After your Pi has (hopefully) booted, you'll just need to plug in your Switch to the hub via the USB-A -> C cable, and enter RCM. The payload will be automatically executed.
+
+### Changing the payload
+
+To change the payload, you can do one of the following methods: (they need `sudo`)
+ * Replace `fusee.bin` in `/etc/fusee-launcher/`. (recommended)
+ * Copy another payload into `/etc/fusee-launcher/`, change `fusee.bin` in `/etc/fusee-launcher/modchipd.sh` to the new payload's filename, and `systemctl restart fusee-launcher` (or `reboot`).
+ 
+## Building
+
+### Dependencies
 
 Framboise's builder, pi-gen runs on Debian based operating systems. Currently it is only supported on
 either Debian Stretch or Ubuntu Xenial and is known to have issues building on
@@ -29,7 +49,7 @@ The file `depends` contains a list of tools needed.  The format of this
 package is `<tool>[:<debian-package>]`.
 
 
-## Config
+### Config
 
 Upon execution, `build.sh` will source the file `config` in the current
 working directory.  This bash shell fragment is intended to set needed
@@ -84,6 +104,6 @@ The following environment variables are supported:
    Setting to '1' enables the QEMU mode - creating an image that can be mounted via QEMU for an emulated
    environment. These images include "-qemu" in the image file name.
 
-## More info about building
+### More info about building
 
 For more information about building, check out the [pi-gen](https://github.com/RPi-Distro/pi-gen) repository.
