@@ -20,6 +20,7 @@ Description = Fusee Launcher service of Fusée Framboise
 After = network.target
 
 [Service]
+WorkingDirectory=/etc/fusee-launcher/
 ExecStart = /etc/fusee-launcher/modchipd.sh
 
 [Install]
