@@ -8,7 +8,7 @@ mkdir -p ${ROOTFS_DIR}/etc/fusee-launcher
 
 git clone "https://github.com/Cease-and-DeSwitch/fusee-launcher" ${ROOTFS_DIR}/etc/fusee-launcher/
 
-curl -o ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin "https://misc.ktemkin.com/fusee.bin"
+curl -o ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin "https://github.com/CTCaer/hekate/releases/download/v3.2/hekate_ctcaer_3.2.bin"
 
 touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
