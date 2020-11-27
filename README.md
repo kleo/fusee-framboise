@@ -24,6 +24,10 @@ Fusée à la Framboise is a Raspbian image that loops Fusée Gelée over and ove
 
 After your Pi has (hopefully) booted, you'll just need to plug in your Switch to the hub via the USB-A -> C cable, and enter RCM. The payload will be automatically executed.
 
+### Demo
+
+[![Fusée à la Framboise with Hekate 5.3.4](https://img.youtube.com/vi/CdMKe9dGHEk/hqdefault.jpg)](https://youtu.be/CdMKe9dGHEk)
+
 ### Changing the payload
 
 To change the payload, you can do one of the following methods: (they need `sudo`)
