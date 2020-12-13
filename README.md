@@ -1,6 +1,8 @@
 # Fusée à la Framboise
 
-Fusée à la Framboise is a Raspbian image that loops Fusée Gelée over and over again.
+Fusée à la Framboise is a Raspberry Pi OS image that loops Fusée Gelée over and over again. 
+
+Modified to use [Hekate](https://github.com/CTCaer/hekate) as default payload.
 
 ## Tutorial
 
@@ -29,6 +31,8 @@ After your Pi has (hopefully) booted, you'll just need to plug in your Switch to
 [![Fusée à la Framboise with Hekate 5.3.4](https://img.youtube.com/vi/CdMKe9dGHEk/hqdefault.jpg)](https://youtu.be/CdMKe9dGHEk)
 
 ### Changing the payload
+
+[Fusée Gelée payload list](https://wiki.gbatemp.net/wiki/List_of_Switch_payloads)
 
 To change the payload, you can do one of the following methods: (they need `sudo`)
  * Replace `fusee.bin` in `/etc/fusee-launcher/`. (recommended)
