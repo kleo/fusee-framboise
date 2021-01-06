@@ -10,11 +10,11 @@ mkdir -p ${ROOTFS_DIR}/etc/fusee-launcher
 
 git clone "https://github.com/Qyriad/fusee-launcher" ${ROOTFS_DIR}/etc/fusee-launcher
 
-curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/hekate.zip "https://github.com/CTCaer/hekate/releases/download/v5.5.1/hekate_ctcaer_5.5.1_Nyx_0.9.7.zip"
+curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/hekate.zip "https://github.com/CTCaer/hekate/releases/download/v5.5.2/hekate_ctcaer_5.5.2_Nyx_0.9.8.zip"
 
 unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate.zip -d ${ROOTFS_DIR}/etc/fusee-launcher
 
-mv -v ${ROOTFS_DIR}/etc/fusee-launcher/hekate_ctcaer_5.5.1.bin ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin
+mv -v ${ROOTFS_DIR}/etc/fusee-launcher/hekate_ctcaer_5.5.2.bin ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin
 
 touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
