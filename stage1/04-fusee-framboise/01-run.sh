@@ -10,7 +10,7 @@ mkdir -p ${ROOTFS_DIR}/etc/fusee-launcher
 
 git clone "https://github.com/Qyriad/fusee-launcher" ${ROOTFS_DIR}/etc/fusee-launcher
 
-curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin "https://github.com/Atmosphere-NX/Atmosphere/releases/download/0.17.0/fusee-primary.bin"
+curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin "https://github.com/Atmosphere-NX/Atmosphere/releases/download/0.17.1/fusee-primary.bin"
 
 touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
