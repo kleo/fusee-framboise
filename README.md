@@ -17,7 +17,7 @@ Includes [Hekate](https://github.com/CTCaer/hekate/) and [Atmosphere](https://gi
 
 ### Setup
 
- 1. [Download a fusee-framboise image](https://github.com/kbeflo/fusee-framboise/releases), or [build one yourself](#building).
+ 1. [Download a fusee-framboise image](https://github.com/kleo/fusee-framboise/releases), or [build one yourself](#building).
  2. Extract the release .zip file, and flash it to your Pi's SD card. (We recommend [Etcher](https://etcher.io) for a flashing tool.)
  3. Plug in your USB Hub **before** you power on your Pi. ([why?](https://www.raspberrypi.org/forums/viewtopic.php?t=23205#p217196))
  4. Power on your Pi via your power bank.
