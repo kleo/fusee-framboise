@@ -26,6 +26,6 @@ jobs:
           dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc \
           qemu-utils kpartx
       - 
-        run: ls -la && pwd && whoami
-      - 
         run: sudo ./build.sh
+      - 
+        run: ls -la && ls -la output && df -h
