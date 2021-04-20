@@ -28,4 +28,4 @@ jobs:
       - 
         run: sudo ./build.sh
       - 
-        run: ls -la && ls -la work/2021-04-20-fusee-framboise-hekate && df -h && cat work/2021-04-20-fusee-framboise-hekate/build.log
+        run: ls -la deploy
