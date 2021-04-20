@@ -28,4 +28,4 @@ jobs:
       - 
         run: ls -la && pwd && whoami
       - 
-        run: ./build.sh
+        run: sudo ./build.sh
