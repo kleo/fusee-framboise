@@ -16,7 +16,12 @@ jobs:
         uses: docker/setup-qemu-action@v1
         with:
           image: tonistiigi/binfmt:latest
-          platforms: all
+          platforms: 386
       -
         name: Available platforms
         run: echo ${{ steps.qemu.outputs.platforms }}
+      - 
+        run: |
+          apt-get update && apt-get install -y coreutils quilt parted qemu-user-static debootstrap zerofree zip \
+          dosfstools bsdtar libcap2-bin grep rsync xz-utils file git curl bc \
+          qemu-utils kpartx
