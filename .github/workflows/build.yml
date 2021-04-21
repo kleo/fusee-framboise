@@ -27,10 +27,12 @@ jobs:
           dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc \
           qemu-utils kpartx jq
       - 
-        name: Building fusee-framboise hekate
-        run: |
-          echo "HEKATE_LATEST_URL=`curl -sL https://api.github.com/repos/CTCaer/hekate/releases/latest | jq -r '.assets[].browser_download_url' | grep hekate_ctcaer`" >> $GITHUB_ENV
-          && echo "HEKATE_LATEST_TAG=`curl -sL https://api.github.com/repos/CTCaer/hekate/releases/latest | jq -r '.tag_name' | sed s/v/\/`" >> $GITHUB_ENV
-          && sudo IMG_NAME=fusee-framboise-hekate DEPLOY_ZIP=0 ./build.sh
+        name: Get hekate latest release url
+        run: echo "HEKATE_LATEST_URL=`curl -sL https://api.github.com/repos/CTCaer/hekate/releases/latest | jq -r '.assets[].browser_download_url' | grep hekate_ctcaer`" >> $GITHUB_ENV
       - 
-        run: ls -la deploy
+        name: Get hekate latest release tag
+        run: echo "HEKATE_LATEST_TAG=`curl -sL https://api.github.com/repos/CTCaer/hekate/releases/latest | jq -r '.tag_name' | sed s/v/\/`" >> $GITHUB_ENV
+      - 
+        name: Building fusee-framboise hekate
+        run: sudo IMG_NAME=fusee-framboise-hekate DEPLOY_ZIP=0 ./build.sh
+
