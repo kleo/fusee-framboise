@@ -52,5 +52,5 @@ jobs:
           prerelease: false
           title: "Monthly build ${{ env.SHORT_SHA }}"
           files: |
-            ${{ env.CURRENT_DATE }}-fusee-framboise-hekate.img
-            ${{ env.CURRENT_DATE }}-fusee-framboise-atmosphere.img
+            deploy/${{ env.CURRENT_DATE }}-fusee-framboise-hekate.img
+            deploy/${{ env.CURRENT_DATE }}-fusee-framboise-atmosphere.img
