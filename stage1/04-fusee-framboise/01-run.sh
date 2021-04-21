@@ -8,7 +8,7 @@ rm -rf ${ROOTFS_DIR}/etc/fusee-launcher
 
 mkdir -p ${ROOTFS_DIR}/etc/fusee-launcher
 
-curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher https://github.com/Qyriad/fusee-launcher/archive/refs/tags/1.0.zip
+curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip https://github.com/Qyriad/fusee-launcher/archive/refs/tags/1.0.zip
 
 unzip -j ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip -d ${ROOTFS_DIR}/etc/fusee-launcher
 
