@@ -1,7 +1,8 @@
 name: build
 
 on:
-  push:
+  schedule:
+    - cron: '0 6 1 * *'
 
 jobs:
   qemu:
@@ -10,6 +11,12 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v2
+      - 
+        name: Get current date
+        run: echo "CURRENT_DATE=`echo $(date '+%Y-%m-%d')`" >> $GITHUB_ENV
+      - 
+        name: Get short commit hash
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-7`" >> $GITHUB_ENV 
       -
         name: Set up QEMU
         id: qemu
@@ -38,3 +45,13 @@ jobs:
       - 
         name: Building fusee-framboise atmosphere
         run: sudo -E IMG_NAME=fusee-framboise-atmosphere DEPLOY_ZIP=0 ./build.sh
+      - 
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Monthly build ${{ env.SHORT_SHA }}"
+          files: |
+            ${{ env.CURRENT_DATE }}-fusee-framboise-hekate.img
+            ${{ env.CURRENT_DATE }}-fusee-framboise-atmosphere.img
