@@ -16,7 +16,7 @@ rm -f ${ROOTFS_DIR}/etc/fusee-launcher/intermezzo.bin
 
 wget -P ${ROOTFS_DIR}/etc/fusee-launcher ${PAYLOAD_LATEST_URL}
 
-if [ ! -f "/etc/fusee-launcher/fusee-primary.bin" ]; then
+if compgen -G "${ROOTFS_DIR}/etc/fusee-launcher/hekate*" > /dev/null; then
     unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate* -d ${ROOTFS_DIR}/etc/fusee-launcher
 fi
 
