@@ -12,7 +12,7 @@ curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip https://github.com/Qyriad/fu
 
 unzip -j ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip -d ${ROOTFS_DIR}/etc/fusee-launcher
 
-curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/hekate.zip "${{ env.HEKATE_LATEST_URL }}"
+curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/hekate.zip ${{ env.HEKATE_LATEST_URL }}
 
 unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate.zip -d ${ROOTFS_DIR}/etc/fusee-launcher
 
