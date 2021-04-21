@@ -34,5 +34,8 @@ jobs:
         run: echo "HEKATE_LATEST_TAG=`curl -sL https://api.github.com/repos/CTCaer/hekate/releases/latest | jq -r '.tag_name' | sed s/v/\/`" >> $GITHUB_ENV
       - 
         name: Building fusee-framboise hekate
-        run: sudo ${{ env.HEKATE_LATEST_URL }} ${{ env.HEKATE_LATEST_TAG }} IMG_NAME=fusee-framboise-hekate DEPLOY_ZIP=0 ./build.sh
+        env:
+          HEKATE_URL: ${{ env.HEKATE_LATEST_URL }}
+          HEKATE_TAG: ${{ env.HEKATE_LATEST_TAG }}
+        run: sudo IMG_NAME=fusee-framboise-hekate DEPLOY_ZIP=0 ./build.sh
 
