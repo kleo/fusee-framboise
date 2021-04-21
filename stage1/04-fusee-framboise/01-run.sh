@@ -12,11 +12,15 @@ curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip https://github.com/Qyriad/fu
 
 unzip -j ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip -d ${ROOTFS_DIR}/etc/fusee-launcher
 
-curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/hekate.zip ${HEKATE_URL}
+rm -f ${ROOTFS_DIR}/etc/fusee-launcher/intermezzo.bin
 
-unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate.zip -d ${ROOTFS_DIR}/etc/fusee-launcher
+wget -P ${ROOTFS_DIR}/etc/fusee-launcher ${PAYLOAD_LATEST_URL}
 
-mv -v ${ROOTFS_DIR}/etc/fusee-launcher/hekate_ctcaer_${HEKATE_TAG}.bin ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin
+if [ ! -f "/etc/fusee-launcher/fusee-primary.bin" ]; then
+    unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate* -d ${ROOTFS_DIR}/etc/fusee-launcher
+fi
+
+mv -v ${ROOTFS_DIR}/etc/fusee-launcher/*.bin ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin
 
 touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
