@@ -18,7 +18,7 @@ if compgen -G "${ROOTFS_DIR}/etc/fusee-launcher/hekate*" > /dev/null; then
     unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate* -d ${ROOTFS_DIR}/etc/fusee-launcher
 fi
 
-mv -v ${ROOTFS_DIR}/etc/fusee-launcher/hekate* ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin
+find ${ROOTFS_DIR}/etc/fusee-launcher -name "hekate*.*" -exec mv '{}' ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin \;
 
 touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
