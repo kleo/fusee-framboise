@@ -14,13 +14,12 @@ unzip -j ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip -d ${ROOTFS_DIR}/etc/fusee-lau
 
 wget -P ${ROOTFS_DIR}/etc/fusee-launcher ${PAYLOAD_LATEST_URL}
 
-if compgen -G "${ROOTFS_DIR}/etc/fusee-launcher/hekate*" > /dev/null; then
-    unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate* -d ${ROOTFS_DIR}/etc/fusee-launcher
+if compgen -G "${ROOTFS_DIR}/etc/fusee-launcher/hekate*.zip" > /dev/null; then
+    unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate*.zip -d ${ROOTFS_DIR}/etc/fusee-launcher \
+    && find ${ROOTFS_DIR}/etc/fusee-launcher -name "hekate*.bin" -exec mv '{}' ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin \;
+elif compgen -G "${ROOTFS_DIR}/etc/fusee-launcher/fusee-primary.bin" > /dev/null; then
+    find ${ROOTFS_DIR}/etc/fusee-launcher -name "fusee-primary.bin" -exec mv '{}' ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin \;
 fi
-
-find ${ROOTFS_DIR}/etc/fusee-launcher -name "hekate*.*" -exec mv '{}' ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin \;
-
-find ${ROOTFS_DIR}/etc/fusee-launcher -name "fusee-primary*.*" -exec mv '{}' ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin \;
 
 touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
