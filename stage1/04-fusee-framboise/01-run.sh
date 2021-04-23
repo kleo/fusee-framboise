@@ -12,15 +12,13 @@ curl -L -o ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip https://github.com/Qyriad/fu
 
 unzip -j ${ROOTFS_DIR}/etc/fusee-launcher/1.0.zip -d ${ROOTFS_DIR}/etc/fusee-launcher
 
-rm -f ${ROOTFS_DIR}/etc/fusee-launcher/intermezzo.bin
-
 wget -P ${ROOTFS_DIR}/etc/fusee-launcher ${PAYLOAD_LATEST_URL}
 
 if compgen -G "${ROOTFS_DIR}/etc/fusee-launcher/hekate*" > /dev/null; then
     unzip ${ROOTFS_DIR}/etc/fusee-launcher/hekate* -d ${ROOTFS_DIR}/etc/fusee-launcher
 fi
 
-mv -v ${ROOTFS_DIR}/etc/fusee-launcher/*.bin ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin
+mv -v ${ROOTFS_DIR}/etc/fusee-launcher/hekate* ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin
 
 touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
