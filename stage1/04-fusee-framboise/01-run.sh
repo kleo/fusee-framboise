@@ -20,6 +20,8 @@ fi
 
 find ${ROOTFS_DIR}/etc/fusee-launcher -name "hekate*.*" -exec mv '{}' ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin \;
 
+find ${ROOTFS_DIR}/etc/fusee-launcher -name "fusee-primary*.*" -exec mv '{}' ${ROOTFS_DIR}/etc/fusee-launcher/fusee.bin \;
+
 touch $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
 
 chmod 770 $ROOTFS_DIR/etc/systemd/system/fusee-launcher.service
