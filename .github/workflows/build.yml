@@ -42,7 +42,7 @@ jobs:
         run: sudo -E IMG_NAME=fusee-framboise-hekate DEPLOY_ZIP=0 ./build.sh
       -
         name: Compress fusee-framboise hekate image
-        run: tar -acvf deploy/${{ env.CURRENT_DATE }}-fusee-framboise-hekate.tar.zst deploy/${{ env.CURRENT_DATE }}-fusee-framboise-hekate.img
+        run: sudo -E tar -acvf deploy/${{ env.CURRENT_DATE }}-fusee-framboise-hekate.tar.zst deploy/${{ env.CURRENT_DATE }}-fusee-framboise-hekate.img
       - 
         name: Get atmosphere latest release url
         run: echo "PAYLOAD_LATEST_URL=`curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases/latest | jq -r '.assets[].browser_download_url' | grep fusee-primary`" >> $GITHUB_ENV
@@ -51,7 +51,7 @@ jobs:
         run: sudo -E IMG_NAME=fusee-framboise-atmosphere DEPLOY_ZIP=0 ./build.sh
       -
         name: Compress fusee-framboise atmosphere image
-        run: tar -acvf deploy/${{ env.CURRENT_DATE }}-fusee-framboise-atmosphere.tar.zst deploy/${{ env.CURRENT_DATE }}-fusee-framboise-atmosphere.img
+        run: sudo -E tar -acvf deploy/${{ env.CURRENT_DATE }}-fusee-framboise-atmosphere.tar.zst deploy/${{ env.CURRENT_DATE }}-fusee-framboise-atmosphere.img
       - 
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
