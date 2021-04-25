@@ -1,4 +1,5 @@
 # Fusée à la Framboise
+[![build](https://github.com/kleo/fusee-framboise/actions/workflows/build.yml/badge.svg)](https://github.com/kleo/fusee-framboise/actions/workflows/build.yml)
 
 Fusée à la Framboise is a Raspberry Pi OS image that loops Fusée Gelée over and over again. 
 
@@ -18,7 +19,7 @@ Includes [Hekate](https://github.com/CTCaer/hekate/) and [Atmosphere](https://gi
 ### Setup
 
  1. [Download a fusee-framboise image](https://github.com/kleo/fusee-framboise/releases), or [build one yourself](#building).
- 2. Extract the release .zip file, and flash it to your Pi's SD card. (We recommend [Etcher](https://etcher.io) for a flashing tool.)
+ 2. Extract the release .img file, and flash it to your Pi's SD card. (We recommend [Etcher](https://etcher.io) for a flashing tool.)
  3. Plug in your USB Hub **before** you power on your Pi. ([why?](https://www.raspberrypi.org/forums/viewtopic.php?t=23205#p217196))
  4. Power on your Pi via your power bank.
 
@@ -29,14 +30,6 @@ After your Pi has (hopefully) booted, you'll just need to plug in your Switch to
 ### Demo
 
 [![Fusée à la Framboise with Hekate 5.3.4](https://img.youtube.com/vi/CdMKe9dGHEk/hqdefault.jpg)](https://youtu.be/CdMKe9dGHEk)
-
-### Changing the payload
-
-[Fusée Gelée payload list](https://wiki.gbatemp.net/wiki/List_of_Switch_payloads)
-
-To change the payload, you can do one of the following methods: (they need `sudo`)
- * Replace `fusee.bin` in `/etc/fusee-launcher/`. (recommended)
- * Copy another payload into `/etc/fusee-launcher/`, change `fusee.bin` in `/etc/fusee-launcher/modchipd.sh` to the new payload's filename, and `systemctl restart fusee-launcher` (or `reboot`).
 
 ## Building  
 
