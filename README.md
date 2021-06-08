@@ -3,7 +3,7 @@
 
 Fusée à la Framboise is a Raspberry Pi OS image that loops Fusée Gelée over and over again. 
 
-Includes [Hekate](https://github.com/CTCaer/hekate/) and [Atmosphere](https://github.com/Atmosphere-NX/Atmosphere) fusee-primary payload images.
+Includes [hekate v5.5.7 & Nyx v1.0.4](https://github.com/CTCaer/hekate/releases/tag/v5.5.7) and [Atmosphere fusee-primary 0.19.3](https://github.com/Atmosphere-NX/Atmosphere/releases/tag/0.19.3) fusee-primary payload images.
 
 ## Tutorial
 
