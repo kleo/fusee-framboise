@@ -1,0 +1,98 @@
+name: 'build: fusee-framboise github release'
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: build fusee-framboise github release
+    runs-on: ubuntu-latest
+    if: "! contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Get the version (git tag)
+        id: get_version
+        run: |
+          echo ${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Get short commit hash
+        run: echo "SHORT_SHA=`echo ${GITHUB_SHA} | cut -c1-7`" >> $GITHUB_ENV 
+        
+      - name: Install pi-gen required dependencies
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update --fix-missing
+          sudo apt-get install -y coreutils quilt parted debootstrap zerofree zip dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc jq
+          sudo apt-get install -y qemu-user-static qemu-utils
+
+      - name: Checkout the latest release pi-gen repo code
+        run: |
+          git clone https://github.com/RPi-Distro/pi-gen.git
+          pushd pi-gen
+          pwd
+          ls -al
+          popd
+
+      - name: Copy picroft image build config to pi-gen working dir
+        run: cp ./config ./pi-gen/config
+
+      - name: Copy picroft stage script to pi-gen working dir
+        run: |
+          find ./pi-gen-stage-picroft -name "*.sh" -exec chmod +x {} \;
+          cp -R ./pi-gen-stage-picroft ./pi-gen/
+          ls -al ./pi-gen
+
+      - name: Skip stage2 image - Standard Raspbian OS Lite
+        run: |
+          touch ./pi-gen/stage2/SKIP_IMAGES
+
+      - name: Get hekate latest release url
+        run: echo "PAYLOAD_LATEST_URL=`curl -sL https://api.github.com/repos/CTCaer/hekate/releases/latest | jq -r '.assets[].browser_download_url' | grep hekate_ctcaer`" >> $GITHUB_ENV
+
+      - name: Build fusee-framboise hekate
+        run: |
+          pwd
+          ls -al
+          pushd pi-gen
+          pwd
+          git checkout tags/2021-10-30-raspios-bullseye
+          sed -i 's/image_//g' ./build.sh
+          ls -al
+          sudo -E CLEAN=1 IMG_NAME=fusee-framboise-hekate ./build.sh -c config
+          popd
+
+      - name: Check prepared images
+        run: |
+          ls -al ./pi-gen/deploy
+
+      - name: Get atmosphere latest release url
+        run: echo "PAYLOAD_LATEST_URL=`curl -sL https://api.github.com/repos/Atmosphere-NX/Atmosphere/releases/latest | jq -r '.assets[].browser_download_url' | grep fusee-primary`" >> $GITHUB_ENV
+
+      - name: Build fusee-framboise atmosphere
+        run: |
+          pwd
+          ls -al
+          pushd pi-gen
+          pwd
+          ls -al
+          sudo -E CLEAN=1 IMG_NAME=fusee-framboise-atmosphere ./build.sh -c config
+          popd
+
+      - name: Check prepared images
+        run: |
+          ls -al ./pi-gen/deploy
+
+      - name: Zipped image checksum
+        run: sha256sum ./pi-gen/deploy/*.zip     
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Test build ${{ env.SHORT_SHA }}"
+          files: |
+            ./pi-gen/deploy/*.zip
