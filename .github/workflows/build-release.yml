@@ -27,6 +27,7 @@ jobs:
           sudo apt-get update --fix-missing
           sudo apt-get install -y coreutils quilt parted debootstrap zerofree zip dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc jq
           sudo apt-get install -y qemu-user-static qemu-utils
+          sudo apt-get install -y xxd kmod kpartx
 
       - name: Checkout the latest release pi-gen repo code
         run: |
@@ -36,13 +37,13 @@ jobs:
           ls -al
           popd
 
-      - name: Copy picroft image build config to pi-gen working dir
+      - name: Copy fusee-framboise image build config to pi-gen working dir
         run: cp ./config ./pi-gen/config
 
-      - name: Copy picroft stage script to pi-gen working dir
+      - name: Copy fusee-framboise stage script to pi-gen working dir
         run: |
-          find ./pi-gen-stage-picroft -name "*.sh" -exec chmod +x {} \;
-          cp -R ./pi-gen-stage-picroft ./pi-gen/
+          find ./pi-gen-stage-fusee-framboise -name "*.sh" -exec chmod +x {} \;
+          cp -R ./pi-gen-stage-fusee-framboise ./pi-gen/
           ls -al ./pi-gen
 
       - name: Skip stage2 image - Standard Raspbian OS Lite
